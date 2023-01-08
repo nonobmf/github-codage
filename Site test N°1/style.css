@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Advent Pro', sans serif; color: antiquewhite;
+    padding: 0;
+    margin: 0;
+    background-image: url(media/imageprincipalesitetest1.jpg);
+    background-size: cover;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 2em;
+    text-shadow: 1px 3px 2px black;
+}
+h4 {
+    color: antiquewhite;
+    text-shadow: 1px 3px 2px black;
+}
+h2 {
+    color: antiquewhite;
+    text-shadow: 1px 3px 2px black;
+    padding-left: 70%;
+    text-align: center;
+    margin-left: auto;
+}
+a {
+    text-decoration: none;
+    color: brown;
+}
+/* *****************NAVBAR************************ */
+nav {
+    overflow: hidden;
+    position: absolute;
+    width: auto;
+    margin-left: 90%;
+}
+header li {
+    font-size: 1em;
+}
+header li a {
+    display: block;
+    text-decoration: none;
+    padding: 1px 1px;
+}
+/* *****************INTRODUCTION************************ */
+#maconfiguration {
+    padding-left: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: center;
+    padding: 1%;
+ }
+ #Hardware {
+    margin-right: 100%;
+    display: flex;
+ }
+.imagemaconfig img:hover {
+    opacity: 0.5;
+    transform: scale(1.05);
+    transition: 0.6s ease-in-out;
+}
+#Introduction h3 {
+padding: 1%;
+}
+#Introduction p {
+    padding: 1%;
+}
+/* **************************FOOTER******************** */
+footer {
+    color: #FFFAE1;
+    padding: 20px 0 10px 0;
+    text-align: center;
+ }
+ form {
+    margin: 0 auto;
+    max-width: 900px;
+ }
+ input, textarea, button {
+    background-color: #FFFAE1;
+    border: none;
+    width: 55%;
+    padding: 15px 10px;
+    font-size: 1.2em;
+    border-radius: 8px;
+ }
+ textarea {
+    height: 120px;
+ }
+ button {
+    font-size: 1.5em;
+    background-color: #FFFAE1;
+ }
+ button:hover {
+    background-color: #01df74;
+    color: #FFFAE1;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+ }
+ #copyright {
+    height: 1px;
+    width: 75%;
+    margin: 10px auto;
+ }

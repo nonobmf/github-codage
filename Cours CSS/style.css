@@ -1,0 +1,250 @@
+/* Fil rouge : selecteur, dimensions, couleurs */
+/* Texte */
+/* Background */
+/* Boxes */
+/* Positioning */
+/* Flex */
+/* Grid */
+/* Pseudo classe */
+/* Débug */
+/* Responsive */
+
+/* ****@import => importer style ecriture depuis google font**** */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+
+/* ****@font face nommé font-1 pour ne pas géner les autres fonts => importer style ecriture depuis le pc dans dossier assets**** */
+
+@font-face {
+    font-family: "font-1";
+    src: url(./assets/NotoSansJP-Medium.otf);
+}
+
+/* ****étoile * => permet de dire à tout le document d'avoir les conditions suivantes (exemple : padding 0 et margin 0)"**** */
+
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+/* *********************3 Background*****************************************  */
+/* ****height => hauteur => 100vh(virtualheight) veux dire 100% écran de l'utilisateur**** */
+/* ****dans background => center pour centrer l'image et cover pour couvrir tout l'écran**** */
+/* ****dans background => no-repeat pour ne pas répeter image - fixed pour que l'image reste fixe et soit pas zoomer avec des pixels**** */
+/* ****overflow => pour que l'image est pas de rebort "haut bas"**** */
+
+body {
+    font-family: 'font-1', sans-serif;
+    background: url(./assets/bg.jpg) no-repeat fixed center/cover;
+    min-height: 100vh;
+    /* height: 100vh; */
+    /* overflow: hidden; */
+    }
+
+/* *********************2 Texte*****************************************  */
+/* ****upercase => Majuscule**** */
+/* ****letter spacing => espace entre les lettres**** */
+/* ****font size en REM => taille du texte**** */
+/* ****text shadow => ombre - premier px axe des x 2eme axe des y 3eme flou et couleur**** */
+/* ****font family => importer style ecriture depuis google font**** */
+
+h1 {
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+    color: darkblue;
+    text-shadow: 5px 3px 0 rgba(0, 139, 139, 0.555);
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+/* *********************4 Boxes*****************************************  */
+/* ****min-height => minimum de hauter en pixel**** */
+/* ****width => largeur toujours en %**** */
+/* ****margin => marge en px - si 1 valeur (meme marge partout) si deux valeur ex(10px haut bas 10px gauche droite) et si 4 valeurs (1px haut 1px droite 1px bas 1px gauche) **** */
+/* ****margin => ce qui se trouve autour de la boite**** */
+/* ****padding => c'est la marge interieur**** */
+/* ****border radius => pour arrondir les angles**** */
+/* ****box shadow => ombre autour de la boxe**** */
+
+main {
+    background: whitesmoke;
+    width: 90%;
+    min-height: 500px;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 12px 5px rgba(0, 0, 0, 0.333);
+}
+
+/* *********************5 Positioning*****************************************  */
+/* ****.positioning => pour aller chercher la div class positioning**** */
+/* ****.positioning, .flexbox, .grid => pour aller chercher la div class positioning/flexbox/grid afin de donner les mêmes conditions**** */
+/* ****border => bordure**** */
+/* **** position relative  => dans l'exemple, le circle (cercle) se met dans l'élement parent**** */
+/* **** position relative  => si on retire relative, le cercle sort du parent et s'installe n'importe ou dans le docs*** */
+
+.positioning,
+.flexbox,
+.grid {
+    border: 2px solid skyblue;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.positioning {
+    position: relative;
+}
+
+h2 {
+    margin: 0;
+}
+
+/* **** # hashtag  => pour aller chercher les id**** */
+/* **** position absolute  => permet de liberer l'objet de son parent**** */
+/* **** Z-index  => permet de positionner l'objet devant ou derrière les autrex (ex : 1 pour circle et rien pour rectangle, le cercle sera toujours devant le rectangle)**** */
+
+#circle {
+    height: 60px;
+    width: 60px;
+    background: skyblue;
+    padding: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: 110px;
+    box-shadow: 0 2px 12px 5px black;
+    z-index: 1;
+}
+
+/* **** transform translate  => il centre l'objet et viens à -50% du left en X et Y**** */
+
+#rectangle {
+    height: 15px;
+    width: 100px;
+    background: slateblue;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* *********************6 Flex*****************************************  */
+/* **** Display flex  => met à la ligne les li des ul**** */
+/* **** justify content => permet d'organiser/répartir les flexboxe du li**** */
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+/* **** list style type non  => retire les ronds à coté des liens**** */
+/* **** align items center  => centrer les li en Y dans la box**** */
+/* **** justify content center  => centrer les li en X dans la box**** */
+
+li {
+    list-style-type: none;
+    font-size: 0.7rem;
+    height: 160px;
+    width: 160px;
+    background: turquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* *********************7 Grid*****************************************  */
+/* **** grid template columns  => occupe espace 30% du premier enfant (logo) et 70% le 2eme enfant (formulaire)**** */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 20px;
+}
+
+.img {
+    text-align: center;
+}
+
+/* **** on déssine un grid**** */
+/* **** grid template columns => 2 colonnes égale (1franction 1fraction)**** */
+/* **** grid template raw => pour les lignes (ici 3 lignes) 1er ligne prénom/nom, 2eme ligne textarea, 3eme ligne valider**** */
+/* **** grid template area => dessiner espace de grille (i1 pour input 1) (ta pour textarea) (bt pour buttom)**** */
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    'i1 i2'
+    'ta ta'
+    'bt bt';
+}
+
+input, textarea {
+    margin: 5px;
+    height: 45px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: "font-1";
+}
+
+#firstname {
+    grid-area: i1;
+}
+#surname {
+    grid-area: i2;
+}
+
+/* **** resize none => pour empecher de jouer avec la largeur du champ de texte**** */
+
+textarea {
+    grid-area: ta;
+    resize: none;
+}
+
+/* **** cursor pointer => pour montrer que le bouton Valider est cliquable**** */
+/* **** transition => premet quand on passe la sourie sur le boutton valider, le changement de couleur ce fait en 0.4sec**** */
+
+input[type="submit"] {
+    grid-area: bt;
+    cursor: pointer;
+    background: cyan;
+    transition: 0.4s;
+}
+
+/* **** :hover => pour créer une animation du bouton valider**** */
+
+input[type="submit"]:hover {
+    background: darkblue;
+    color: white;
+}
+
+/* *********************10 Responsive*****************************************  */
+/* **** media screen and max..... => tant que la largeur ne dépasse pas 1000px, tu appliques les conditions. sinon après ça marche pas**** */
+
+@media screen and (max-width: 1000px) {
+    .grid-container {
+        display: block;
+    }
+}
+
+/* **** media screen and max..... => tant que la largeur ne dépasse pas 780px, tu appliques les conditions. sinon après ça marche pas**** */
+/* **** reprise ici du form avec les colones 1 en dessous des autres pour les petits écran et que sa ne dépasse pas de chaque coté**** */
+
+@media screen and (max-width: 780px) {
+    form {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    'i1'
+    'i2' 
+    'ta'
+    'bt';
+}
+}

@@ -1,0 +1,345 @@
+/* ***************** :root pour dire de prendre en compte les variables suivante / il est souvent utilisé 4 couleurs dans les projets / le paramètre des couleurs permet de les appeler dans le projet directement *************************************** */
+:root {
+    --color1: #ede4d0;
+    --color2 : pink;
+    --color3 : #393b4b;
+    --color4 : rgb(18, 19, 19);
+}
+/* **************Box sizing => pour bien arranger les boites - à mettre dans tous les projets ********************** */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* ****************** color: var permet d'appeler les couleurs paramétré au début du CSS dans le root******************** */
+/* ****************** align items permet de centrer verticalement******************** */
+/* ****************** justify content permet de centrer horizontalement******************** */
+body {
+    background: url(./bg.jpg) center/cover;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+/* ************** width calc (100% - 50px) veux dire de prendre 100% de la largeur et d'enlever 50 pixel de chaque côté************************** */
+/* ************** padding avec 3 élements - le 1er en haut - 2ème gauche/droite - 3eme en bas************************** */
+/* ************** backdrop filter : blur (en px) - permet d'installer un flou en arrière plan************************** */
+.card {
+    background: rgba(0, 0, 0, 0.502);
+    width: calc(100% - 50px);
+    padding: 20px 20px 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.521);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+/* ************** ::before ou ::after - permet d'integrer des choses sans passer par html comme l'etoile dans l'exemple ci dessous************************** */
+/* ************** content - il faut le mettre impérativement même si il est vide (ex : content: "";) ainsi que position en absolute************************** */
+.card::before {
+    content: "\2730";
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-size: 2.4rem;
+}
+/* ************** margin bottom permet d'espacer le texte h1 du p************************** */
+/* ************** la position relative permet de mettre la barre de séparation en dessous dans son parent. sinon la barre part complètement dans le parent de la card************************** */
+h1 {
+    margin-bottom: 24px;
+    position: relative;
+}
+/* ***************************ANIMATION********************************* */
+/* ************** ici on créer une barre de séparation en dessous du titre et on le place correctement avec différent paramètre comme ci dessous************************** */
+/* ************** transform translate permet de bien centrer la barre car les 50% du left la fait partir trop à droite************************** */
+/* ************** transform translate avec scaleX à 0 permet d'ajouter une annimation (ici 0 pour la faire disparaitre) et enssuite créer l'animation dans keyframes************************** */
+/* ************** easy in out veux dire "lent au début et lent à la fin"************************** */
+/* **************on créer l'animation en appelant le h1anim du keyframes et on lui dit du met 10sec à faire l'animation et tu es lent au début et à la fin et tu reste affiché************************** */
+/* ************** forwards donne la condition à l'animation de resté à la fin et de pas faire disparaitre la ligne************************** */
+/* ************** transform origin permet de dire à l'animation de partir de gauche ou droite ou centre peut importe (de base il part du centre)************************** */
+h1::after {
+    content: "";
+    position: absolute;
+    background: var(--color2);
+    height: 1px;
+    width: 100%;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    animation: h1anim 10s ease-in-out forwards;
+    /* transform-origin: left; */
+}
+/* ************** Création d'annimation - ici on dit à l'animation de passer de scale 0 (dans after) à 1 et il faut rappeler translate x -50 car sinon on écrase la ligne du dessus************************** */
+@keyframes h1anim {
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+/* **********************FIN ANIMATION DE LA BARRE********************* */
+
+/* ************** grid container est très utilise pour faire des colonnes (exemple ici 20% pour le 1er enfant "polygon" et 80% pour le 2ème enfant "p""************************** */
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+/* ************** filter : drop-shaddow correspond à l'ombre qui est en dessous du polygon (à l'image identique du polygon)************************** */
+/* ************** place self center permet de centrer parfaitement l'objet en une seule ligne (ici polygon) mais pour cela il faut que le parent soit en grid (.grid-container)************************** */
+/* ************** place self center left - pour lui dire de centrer à gauche (marche aussi a droite right)************************** */
+.polygon-container {
+    filter: drop-shadow(-1px 6px 3px var(--color2));
+    place-self: center left;
+}
+/* ************** le polygon est créer à partir du site internet clippy - si on l'integre avec le code du site, on ne le voie pas car il faut lui donner un background et une hauteur************************** */
+/* ************** dans background - on a integré un gradient que l'on peut configurer à partir du site CSS gradient / ou on peut lui donner les couleurs que l'on veut comme ci dessous************************** */
+/* ************** si on veux lui donner une shaddow (ombre), ça ne marche pas car il faut passer par son parent qui est .polygon-container************************** */
+.polygon {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    /* background: linear-gradient(135deg, yellow 0%, red 100%); */
+    background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%);
+    height: 100px;
+    width: 100px;
+}
+/* ************** ::before ou ::after - permet d'integrer des choses sans passer par html comme le texte dans l'exemple ci dessous************************** */
+/* ************** top 50% left 50% pour centrer l'objet************************** */
+/* ************** transform translate - pour centrer parfaitement le texte dans l'objet avec les valeurs ci dessous************************** */
+/* ************** rotate - pour faire une rotation à l'objet (ici texte), on peut le configurer dans le navigateur inspecter (fonctionne avec chrome mais pas avec edge************************** */
+.polygon::after {
+    content: "un texte";
+    position: absolute;
+    color: var(--color2);
+    background: var(--color4);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(344deg);
+    width: 90px;
+    padding: 4px;
+    text-align: center;
+}
+/* ************** line-height - permet de créer un écartement entre les lignes************************** */
+/* ************** pour permettre au paragraphe de s'arreter à 4 lignes et qu'ils soient alligné comme dans word, mettre le code ci dessous à partir de display. le paragraphe se terminera pas 3 petit point************************** */
+p {
+    line-height: 26px;
+    margin: 20px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-align: justify;
+}
+/* ************** Pour parametrer la couleur du texte selectionner - mettre le code ci dessous (par défaut il est bleu dans le navigateur)************************** */
+/* ************** la color ci dessous correspond au fond de la selection (ex ici (selection rose avec fond noir)************************** */
+p::selection {
+    background: var(--color2);
+    color: var(--color3);
+}
+/* ************** perspective pour la 3D de l'animation (plus la valeur est grosse, moins l'animation ce verra)************************** */
+.checkbox-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0 30px;
+    perspective: 40px;
+}
+/* ************** pour agir dans l'élement option 1 quand on valide************************** */
+/* ************** display none permet de faire disparaitre complètement le curseur valider et on laisse uniquement apparaitre les cases option************************** */
+input[type="checkbox"] {
+    display: none;
+}
+/* ************** en mettant checked - dès qu'on valide le curseur il prend en compte les parametre en dessous (ex : display none pour faire disparaitre les curseurs)************************** */
+/* ************** en ajoutant checked + label - on agit sur le curseur et les label (les label correspond au option 1-2-3)************************** */
+/* ************** filter brightness permet d'augmenter la lulinosité du bouton quand on clique************************* */
+input[type="checkbox"]:checked + label {
+    background: var(--color2);
+    color: var(--color3);
+    transform: scale(1.1);
+    filter: brightness(120%);
+}
+/* ************** transition - la mettre dans son element ici label car ne fonctionne pas si on le met au dessus************************** */
+/* ************** le label correspond au case option 1/2/3************************** */
+/* ************** user select none - permet d'interdire à l'utilisateur de copié le texte************************** */
+label {
+    cursor: pointer;
+    border: 1px solid var(--color1);
+    background: var(--color3);
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.2s;
+    user-select: none;
+}
+
+/* *******************ANIMATION sur le 1er label****************** */
+/* ************** first of type:hover veux dire quand tu survole le premier label************************** */
+/* ************** nth-child permet d'aller chercher le label concerné (c'est une autre façon de faire) (ici on va chercher le deuxième nth-child(2):hover)************************** */
+/* ************** infinite pour répéter à l'infinie et linéar pour que l'animation soit linéaire (il y a aussi alternate)************************** */
+label:first-of-type:hover { 
+    animation: label1 1s infinite linear;
+}
+/* ************** 50% pour dire de 0 à 50% de l'animation tu grossis de 40%************************** */
+/* ************** 100% pour dire de 50% à 100% à la fin de l'animation tu reviens à la normal************************** */
+@keyframes label1 {
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* ***********************ANIMATION 3D sur le 2ème label***************** */
+label:nth-child(4):hover {
+    animation: label2 3s infinite;
+}
+/* ************** Ne pas oublier la perspective sur le parent (pour faire de la 3D)************************** */
+/* ************** TranslateZ pour faire de la 3D. les px en positif (l'objet vient à nous) et en négatif (il s'écarte de nous)************************** */
+@keyframes label2 {
+    33% {
+        transform: translateZ(30px);
+    }
+    66% {
+        transform: translateZ(-40px);
+    }
+    100% {
+        transform: translateZ(0);
+    }
+}
+.email {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* ************** Réglage des largeurs en fonction de l'écran pour que l'espace pour entrer l'email ne soit pas cassé, ici on dit une largeur autorisé de 35% avec un mini de 180px et max de 300px************************** */
+.email input {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 3px solid transparent;
+    transition: 0.3s;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color1);
+    min-width: 180px;
+    width: 35%;
+    max-width: 300px;
+}
+/* ************** :focus - pour créer un comportement quand l'utilisateur écris quelque chose dans la zone "entrez votre email" (ici dans l'exemple quand on clique dedans, le fond deviens transparent et les angles s'arrondie)************************** */
+input[type="text"]:focus {
+    background: transparent;
+    border: 3px solid var(--color2);
+    border-radius: 150px;
+}
+/* ************** ici on modifie les paramètres du placeholder qui correspond à l'écriture "entrez votre email"************************** */
+input[type="text"]::placeholder {
+    color: var(--color2);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/* **************margin 0 auto + display block pour centrer le bouton dans toute la largeur (par défaut il est en display inline block qui le centre uniquement dans son élément************************** */
+/* ************** la transition est installé dans son élément principal pour avoir l'effet en entrée en sortie (cet à dire quand on passe la sourie dessus et quand on quitte la sourie)************************** */
+button {
+    cursor: pointer;
+    background: var(--color2);
+    border: none;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    border-radius: 150px;
+    margin: 0 auto;
+    display: block;
+    transition: 0.4s;
+}
+/* **** :hover => pour créer une animation du bouton valider (ici on espace les lettres de 3px quand passe la souris**** */
+button:hover {
+    letter-spacing: 3px;
+}
+/* **** la condition "active" permet de faire un effet sur le bouton quand on clique sur l'élément**** */
+button:active {
+    transform: scale(1.2);
+    background: blue;
+}
+/* **** ici on créer l'arriver des conditions générale (dans "a" on fait disparaitre et dans hover+a on le fait réaparaitre avec une opacité de 1)**** */
+/* **** on a ajouter ,a:hover afin de pouvoir cliquer sur les "conditions générale", sinon il disparraise**** */
+button:hover + a,
+a:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+/* **** text decoration none pour retirer le soulignement en dessous du lien**** */
+/* **** opacity 0 (pour faire disparaitre le texte des conditions générales de vente) transform translate y (pour bouger le texte de 20px) et une transition de 0.3s (pour l'effet d'arriver du texte) - pour que les "conditions générales de vente" apparaissent au moment de cliquer sur le bouton valider**** */
+/* **** Visibility hidden pour éviter les bugues de souris quand on passe dessus => il faut également le rappeler dans dans le bouton en visibility-visible (sinon il apparait pas quand on passe la souris)**** */
+a {
+    color: var(--color2);
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: 0.3s;
+}
+/* **** a visited - pour quand on clique dessus, la couleur par défaut est violet. ici on la mis en couleur 1**** */
+a:visited {
+    color: var(--color1);
+}
+/* ************ ici on paramètre les couleurs et ombre du vaisseau avec une position absolute pour le liberer********** */
+img {
+    height: 40px;
+    position: absolute;
+    filter: drop-shadow(0px 6px 3px rgba(255, 255, 0, 0.6));
+    z-index: -1;
+    animation: spaceship 6s infinite linear;
+}
+/* ***************Pour affiner l'animation du vaiseau, on peux le faire avec le navigateur chrome comme pour les rotates************** */
+@keyframes spaceship {
+    0% {
+        top: 2%;
+        left: 2%;
+        transform: rotate(90deg);
+    }
+    10% {
+        top: 6%;
+        left: 30%;
+        transform: rotate(95deg);
+    }
+    20% {
+        top: 9%;
+        left: 60%;
+        transform: rotate(60deg);
+    }
+    30% {
+        top: 2%;
+        left: 80%;
+        transform: rotate(90deg);
+    }
+    40% {
+        top: 20%;
+        left: 120%;
+        transform: rotate(110deg);
+    }
+    50% {
+        top: 50%;
+        left: 80%;
+        transform: rotate(323deg);
+    }
+    60% {
+        top: 90%;
+        left: 90%;
+        transform: rotate(256deg);
+    }
+    70% {
+        top: 110%;
+        left: 50%;
+        transform: rotate(237deg);
+    }
+    80% {
+        top: 85%;
+        left: 30%;
+        transform: rotate(323deg);
+    }
+    90% {
+        top: 50%;
+        left: 15%;
+        transform: rotate(350deg);
+    }
+    100% {
+        top: 2%;
+        left: 2%;
+        transform: rotate(90deg);
+    }
+}
