@@ -1,0 +1,21 @@
+nav {
+    background: rgba(255, 255, 255, 0.251);
+    display: flex;
+    justify-content: space-between;
+    width: 73%;
+    margin: 0 auto;
+    position: relative;
+    color: white;
+    font-family: font-2;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 5px;
+    }
+    li {
+        padding: 0 20px;
+    }
+}

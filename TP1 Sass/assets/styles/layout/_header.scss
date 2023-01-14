@@ -1,0 +1,31 @@
+header {
+    text-align: center;
+    // width: 75%;
+    margin: 0 auto;
+
+    .main-header {
+        margin-top: 180px;
+    }
+
+    h1 {
+        max-width: 550px;
+        margin: 0 auto 40px;
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        font-family: font-1;
+        text-align: center;
+        color: white;
+        letter-spacing: 4px;
+    }
+
+    p {
+        font-size: 0.9rem;
+        color: white;
+        font-family: font-2;
+    }
+.main-header i {
+    font-size: 3rem;
+    color: white;
+    margin: 50px;
+}
+}
